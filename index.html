@@ -2,182 +2,160 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <title>Hadding</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
 <body>
-    <!-- Button -->
-    <div style="border-bottom: 5px solid;color: rgb(11, 135, 236);box-shadow: 3px 3px 3px 3px blue;">
-        <div style="display: flex; justify-content: space-between;">
-            <button style="margin: 10px;" type="button" class="btn btn-primary" data-toggle="modal"
-                data-target="#Modal1">
-                Hadding
-            </button>
-            <button style="margin: 10px;" type="button" class="btn btn-primary" data-toggle="modal"
-                data-target="#exampleModal22">
-                Sub hadding
-            </button>
-
-            <button style="margin: 10px;" type="button" class="btn btn-primary" data-toggle="modal"
-                data-target="#exampleModal33">
-                Form
-            </button>
-        </div>
-
+    <!-- Button trigger modal -->
+    <div class="d-flex justify-content-evenly">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=".heading">
+            HEADING
+        </button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=".subheading">Subheading
+        </button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=".form">
+            Form
+        </button>
     </div>
+    <hr>
 
-
-
-
-    <!-- Modal1-->
-    <div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="false">
-        <div class="modal-dialog" role="document">
+    <!-- Subheading Modal -->
+    <div class="modal fade heading" tabindex="-1" aria-labelledby="heading" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Hadding</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Heading</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="message-text" class="col-form-label">Enter Heading:</label>
-                            <input type="text" id="message-text">
-
+                    <form class="heading-form">
+                        <div class="mb-3">
+                            <label for="heading-input" class="col-form-label">Heading</label>
+                            <input type="text" class="form-control heading-input">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary save-heading-btn">Save</button>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="save-button">Save</button>
                 </div>
             </div>
         </div>
     </div>
 
-
-
-    <!-- Modal2 -->
-    <!-- ... (rest of the HTML remains the same) ... -->
-
-    <!-- Modal2 -->
-    <div class="modal fade" id="exampleModal22" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <!-- Modal for Adding Subheadings -->
+    <div class="modal fade subheading" tabindex="-1" aria-labelledby="subheading" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Sub Hadding</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: royalblue;">Subheading</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="select-heading" class="col-form-label">Select Heading:</label>
-                            <select id="select-heading" class="form-control">
-                                <!-- headings will be populated here -->
+                    <form class="subheading-form">
+                        <div class="mb-3">
+                            <label for="heading-select" class="col-form-label">Select Heading</label>
+                            <select class="form-select heading-select" aria-label="Select Heading">
+                                <option selected disabled>Select a heading</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="sub-heading-text" class="col-form-label">Enter Sub Heading:</label>
-                            <input type="text" id="sub-heading-text">
+                        <div class="mb-3">
+                            <label for="subheading-input" class="col-form-label">Subheading</label>
+                            <input type="text" class="form-control subheading-input">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary save-subheading-btn">Save</button>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="save-sub-heading">Save</button>
                 </div>
             </div>
         </div>
     </div>
 
-
-
-
-    <!-- ... (rest of the HTML remains the same) ... -->
-
-    <!-- Modal3 -->
-    <!-- Modal3 -->
-    <div class="modal fade" id="exampleModal33" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <!-- Modal for Form Inputs -->
+    <div class="modal fade form" tabindex="-1" aria-labelledby="form" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Sub Heading Details</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Form Modal</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="select-heading-3" class="col-form-label">Select Heading:</label>
-                            <select id="select-heading-3" class="form-control">
-                                <!-- headings will be populated here -->
+                    <form class="form-inputs">
+                        <div class="mb-3">
+                            <label for="heading-form-select" class="col-form-label">Select Heading</label>
+                            <select class="form-select heading-form-select" aria-label="Select Heading">
+                                <option selected disabled>Select a heading</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="select-sub-heading" class="col-form-label">Select Sub Heading:</label>
-                            <select id="select-sub-heading" class="form-control">
-                                <!-- subheadings will be populated here -->
+                        <div class="mb-3">
+                            <label for="subheading-form-select" class="col-form-label">Select Subheading</label>
+                            <select class="form-select subheading-form-select" aria-label="Select Subheading">
+                                <option selected disabled>Select a subheading</option>
                             </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="choose-input-type" class="col-form-label">Choose Input Type</label>
+                            <select class="form-select choose-input-type" aria-label="Choose Input Type">
+                                <option selected disabled>Select an input type</option>
+                                <option value="input">Input</option>
+                                <option value="textarea">Textarea</option>
+                                <option value="select">Select</option>
+                                <option value="checkbox">Checkbox</option>
+                                <option value="radio_button">Radio Button</option>
+                                <option value="button">Button</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 input-type-options">
+                            <div class="input-type-specific-options">
+                                <label>Type:</label>
+                                <input type="text" class="form-control input-type">
+                                <br>
+                                <label>Label:</label>
+                                <input type="text" class="form-control input-label">
+                                <br>
+                                <label>Class:</label>
+                                <input type="text" class="form-control input-class">
+                                <br>
+                                <label>Placeholder:</label>
+                                <input type="text" class="form-control input-placeholder">
+                                <br>
+                                <label>Value:</label>
+                                <input type="text" class="form-control input-value">
+                                <br>
+                                <label>Option:</label>
+                                <input type="text" class="form-control input-option">
+                                <br>
+                                <label>Readonly:</label>
+                                <input type="checkbox" class="form-check-input input-readonly">
+                                <br>
+                                <label>Disabled:</label>
+                                <input type="checkbox" class="form-check-input input-disabled">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary save-form-btn">Save</button>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="save-sub-heading-details">Save</button>
                 </div>
             </div>
         </div>
     </div>
+    <main class="main-content"></main>
 
-    <!-- ... (rest of the HTML remains the same) ... -->
-
-
-
-
-
-
-
-    <main id="main-page">
-        <h2 id="display-heading"></h2>
-
-    </main>
-
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-
     <script src="script.js"></script>
-
-
-
 </body>
 
 </html>

@@ -1,58 +1,127 @@
 $(document).ready(function () {
-    var headings = [];
-    var subHeadings = {};
+    $('.heading-form').on('submit', function (e) {
+        e.preventDefault();
 
-    $('#save-button').on('click', function () {
-        var heading = $('#message-text').val();
-        var headingId = `heading-${headings.length}`; // generate a unique ID
-        $('#display-heading').append(`<h1 id="${headingId}">${heading}</h1>`)
-        $('#Modal1').modal('hide');
-        headings.push({ id: headingId, text: heading }); // add heading to the array with ID
-        console.log(heading, '####################3')
-    });
-
-    $('#exampleModal22').on('show.bs.modal', function () {
-        // populate the select dropdown with headings
-        var selectHeading = $('#select-heading');
-        selectHeading.empty();
-        $.each(headings, function (index, heading) {
-            selectHeading.append(`<option value="${heading.id}">${heading.text}</option>`);
-        });
-    });
-
-    $('#save-sub-heading').on('click', function () {
-        var selectedHeadingId = $('#select-heading').val();
-        var subHeading = $('#sub-heading-text').val();
-        $(`#${selectedHeadingId}`).append(`<h2>${subHeading}</h2>`); // append to the correct element
-        $('#exampleModal22').modal('hide');
-        // add subheading to the subHeadings object
-        if (!subHeadings[selectedHeadingId]) {
-            subHeadings[selectedHeadingId] = [];
+        var newHeading = $('.heading-input').val().trim();
+        if (newHeading) {
+            $('.heading').modal('hide');
+            $('.heading-select').append($('<option>').val(newHeading).text(newHeading));
+            $('.heading-form-select').append($('<option>').val(newHeading).text(newHeading));
+            $('.main-content').append(`
+                <div class="heading-container">
+                    <h2>${newHeading}</h2>
+                </div>
+            `);
+            $('.heading-input').val('');
+            $('.newHeading').val('');
+            console.log(newHeading, "Heading added");
         }
-        subHeadings[selectedHeadingId].push(subHeading);
     });
 
-    $('#exampleModal33').on('show.bs.modal', function () {
-        // populate the select dropdown with headings
-        var selectHeading = $('#select-heading-3'); // updated selector
-        selectHeading.empty();
-        $.each(headings, function (index, heading) {
-            selectHeading.append(`<option value="${heading.id}">${heading.text}</option>`);
+
+    $('.subheading-form').on('submit', function (e) {
+        e.preventDefault();
+        var selectedHeading = $('.heading-select').val();
+        var newSubheading = $('.subheading-input').val().trim();
+
+        if (selectedHeading && newSubheading) {
+            $('.subheading').modal('hide');
+            $('.main-content').find("h2:contains('" + selectedHeading + "')").after(`
+                <div class="subheading-container">
+                    <h3>${newSubheading}</h3>
+                </div>
+            `);
+            $('.subheading-input').val('');
+            $('.heading-select').val('');
+            console.log(newSubheading, "Subheading added");
+        }
+    });
+
+
+    $('.heading-form-select').on('change', function () {
+        var selectedHeading = $(this).val();
+        var subheadings = [];
+
+
+        $('.main-content').find("h2:contains('" + selectedHeading + "')").nextAll('div.subheading-container').each(function () {
+            subheadings.push($(this).find('h3').text());
         });
 
-        // trigger the selectHeading change event handler
-        $('#select-heading-3').trigger('change');
+        var subheadingSelect = $('.subheading-form-select');
+        subheadingSelect.empty();
+        subheadingSelect.append('<option selected disabled>Select a subheading</option>');
+        $.each(subheadings, function (index, subheading) {
+            subheadingSelect.append($('<option>').val(subheading).text(subheading));
+            $('.newHeading').val('');
+        });
     });
 
-    $('#select-heading-3').on('change', function () {
-        var selectedHeadingId = $(this).val();
-        var selectSubHeading = $('#select-sub-heading');
-        selectSubHeading.empty();
-        if (subHeadings[selectedHeadingId]) {
-            $.each(subHeadings[selectedHeadingId], function (index, subHeading) {
-                selectSubHeading.append(`<option value="${subHeading}">${subHeading}</option>`);
-            });
+    $('.form-inputs').on('submit', function (e) {
+        e.preventDefault();
+
+        var selectedHeading = $('.heading-form-select').val();
+        var selectedSubheading = $('.subheading-form-select').val();
+        var inputType = $('.choose-input-type').val();
+        var inputTypeSpecificOptions = {};
+
+        if (inputType) {
+            
+            inputTypeSpecificOptions.type = $('.input-type').val();
+            inputTypeSpecificOptions.label = $('.input-label').val();
+            inputTypeSpecificOptions.class = $('.input-class').val();
+            inputTypeSpecificOptions.placeholder = $('.input-placeholder').val();
+            inputTypeSpecificOptions.value = $('.input-value').val();
+            inputTypeSpecificOptions.option = $('.input-option').val();
+            inputTypeSpecificOptions.readonly = $('.input-readonly').prop('checked');
+            inputTypeSpecificOptions.disabled = $('.input-disabled').prop('checked');
+        }
+
+        if (selectedHeading && selectedSubheading && inputType) {
+            $('.form').modal('hide');
+            var inputHTML = '';
+
+            switch (inputType) {
+                case 'input':
+                    inputHTML = `<input type="${inputTypeSpecificOptions.type}" class="${inputTypeSpecificOptions.class}" placeholder="${inputTypeSpecificOptions.placeholder}" value="${inputTypeSpecificOptions.value}" ${inputTypeSpecificOptions.readonly ? 'readonly' : ''} ${inputTypeSpecificOptions.disabled ? 'disabled' : ''}>`;
+                    break;
+                case 'textarea':
+                    inputHTML = `<textarea class="${inputTypeSpecificOptions.class}" placeholder="${inputTypeSpecificOptions.placeholder}" ${inputTypeSpecificOptions.readonly ? 'readonly' : ''} ${inputTypeSpecificOptions.disabled ? 'disabled' : ''}>${inputTypeSpecificOptions.value}</textarea>`;
+                    break;
+                case 'select':
+                    inputHTML = `<select class="${inputTypeSpecificOptions.class}" ${inputTypeSpecificOptions.readonly ? 'readonly' : ''} ${inputTypeSpecificOptions.disabled ? 'disabled' : ''}>`;
+                    $.each(inputTypeSpecificOptions.option.split(','), function (index, option) {
+                        inputHTML += `<option value="${option}">${option}</option>`;
+                    });
+                    inputHTML += `</select>`;
+                    break;
+                case 'checkbox':
+                    inputHTML = `<div class="form-check">`;
+                    $.each(inputTypeSpecificOptions.option.split(','), function (index, option) {
+                        inputHTML += `<input type="checkbox" class="${inputTypeSpecificOptions.class}" value="${option}" ${inputTypeSpecificOptions.readonly ? 'readonly' : ''} ${inputTypeSpecificOptions.disabled ? 'disabled' : ''}>`;
+                        inputHTML += `<label class="form-check-label">${option}</label>`;
+                        inputHTML += `</div>`;
+                    });
+                    break;
+                case 'radio_button':
+                    inputHTML = `<div class="form-check">`;
+                    $.each(inputTypeSpecificOptions.option.split(','), function (index, option) {
+                        inputHTML += `<input type="radio" name="radio-group" class="${inputTypeSpecificOptions.class}" value="${option}" ${inputTypeSpecificOptions.readonly ? 'readonly' : ''} ${inputTypeSpecificOptions.disabled ? 'disabled' : ''}>`;
+                        inputHTML += `<label class="form-check-label">${option}</label>`;
+                        inputHTML += `</div>`;
+                    });
+                    break;
+                case 'button':
+                    inputHTML = `<button type="button" class="${inputTypeSpecificOptions.class}" ${inputTypeSpecificOptions.readonly ? 'readonly' : ''} ${inputTypeSpecificOptions.disabled ? 'disabled' : ''}>${inputTypeSpecificOptions.value}</button>`;
+                    break;
+            }
+
+            $('.main-content').find("h2:contains('" + selectedHeading + "')").nextAll('div.subheading-container').find("h3:contains('" + selectedSubheading + "')").after(`
+                <div class="input-container">
+                    <label>${inputTypeSpecificOptions.label}</label>
+                    ${inputHTML}
+                </div>
+            `);
+            console.log("Form input added");
         }
     });
 });
-
