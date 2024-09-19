@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="my.css">
 </head>
 
-<body>
+<body style="background-color: rgb(206, 212, 211);">
     <!-- Button trigger modal -->
     <div class="d-flex justify-content-evenly">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=".heading">
@@ -36,7 +36,7 @@
                     <form class="heading-form">
                         <div class="mb-3">
                             <label for="heading-input" class="col-form-label">Heading</label>
-                            <input type="text" class="form-control heading-input">
+                            <input type="text" class="form-control heading-input" required>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -66,7 +66,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="subheading-input" class="col-form-label">Subheading</label>
-                            <input type="text" class="form-control subheading-input">
+                            <input type="text" class="form-control subheading-input" required>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -90,7 +90,7 @@
                     <form class="form-inputs">
                         <div class="mb-3">
                             <label for="heading-form-select" class="col-form-label">Select Heading</label>
-                            <select class="form-select heading-form-select" aria-label="Select Heading">
+                            <select class ="form-select heading-form-select" aria-label="Select Heading">
                                 <option selected disabled>Select a heading</option>
                             </select>
                         </div>
@@ -102,26 +102,42 @@
                         </div>
                         <div class="mb-3">
                             <label for="choose-input-type" class="col-form-label">Choose Input Type</label>
-                            <select class="form-select choose-input-type" aria-label="Choose Input Type">
+                            <select class="form-select choose-input-type" aria-label="Choose Input Type"required>
                                 <option selected disabled>Select an input type</option>
-                                <option value="input">Input</option>
                                 <option value="textarea">Textarea</option>
                                 <option value="select">Select</option>
                                 <option value="checkbox">Checkbox</option>
                                 <option value="radio_button">Radio Button</option>
-                                <option value="button">Button</option>
+                                <option value="color">Color</option>
+                                <option value="date">Date</option>
+                                <option value="datetime-local">Datetime-local</option>
+                                <option value="email">Email</option>
+                                <option value="file">File</option>
+                                <option value="image">Image</option>
+                                <option value="month">Month</option>
+                                <option value="number">Number</option>
+                                <option value="password">Password</option>
+                                
+                                <option value="range">Range</option>
+                                <option value="search">Search</option>
+                                <option value="submit">Submit</option>
+                                <option value="text">Text</option>
+                                <option value="time">Time</option>
+                                <option value="url">URL</option>
+                                <option value="week">Week</option>
                             </select>
                         </div>
+                        
                         <div class="mb-3 input-type-options">
                             <div class="input-type-specific-options">
-                                <label>Type:</label>
-                                <input type="text" class="form-control input-type">
+                                <label>Name:</label>
+                                <input type="text" class="form-control input-name"required>
                                 <br>
                                 <label>Label:</label>
-                                <input type="text" class="form-control input-label">
+                                <input type="text" class="form-control input-label"required>
                                 <br>
                                 <label>Class:</label>
-                                <input type="text" class="form-control input-class">
+                                <input type="text" class="form-control input-class"required>
                                 <br>
                                 <label>Placeholder:</label>
                                 <input type="text" class="form-control input-placeholder">
@@ -137,11 +153,14 @@
                                 <br>
                                 <label>Disabled:</label>
                                 <input type="checkbox" class="form-check-input input-disabled vertical-checkbox">
+                                <br>
+                                <label>Required:</label>
+                                <input type="checkbox" class="form-check-input input-required vertical-checkbox">
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
- <button type="submit" class="btn btn-primary save-form-btn">Save</button>
+                            <button type="submit" class="btn btn-primary save-form-btn">Save</button>
                         </div>
                     </form>
                 </div>
